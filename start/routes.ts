@@ -26,3 +26,6 @@ Route.get("/", async () => {
 
 import "./routes/departamentos";
 import "./routes/usuarios";
+import "./routes/municipios";
+import "./routes/vehiculos";
+import "./routes/operacions";
