@@ -1,8 +1,8 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Vehiculo from 'App/Models/Vehiculo';
+import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Vehiculo from "App/Models/Vehiculo";
+import VehiculoValidator from "App/Validators/VehiculoValidator";
 
 export default class VehiculosController {
-    
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       let theVehiculo: Vehiculo = await Vehiculo.findOrFail(params.id);
@@ -19,6 +19,7 @@ export default class VehiculosController {
     }
   }
   public async create({ request }: HttpContextContract) {
+    await request.validate(VehiculoValidator);
     const body = request.body();
     const theVehiculo: Vehiculo = await Vehiculo.create(body);
     return theVehiculo;
