@@ -30,3 +30,4 @@ import "./routes/municipios";
 import "./routes/vehiculos";
 import "./routes/operacions";
 import "./routes/administrador";
+import "./routes/servicio";
