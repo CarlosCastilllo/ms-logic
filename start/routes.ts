@@ -19,6 +19,7 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
+import Route from "@ioc:Adonis/Core/Route";
 
 Route.get("/", async () => {
   return { hello: "world" };
@@ -31,3 +32,9 @@ import "./routes/vehiculos";
 import "./routes/operacions";
 import "./routes/administrador";
 import "./routes/servicio";
+
+Route.get("/", async () => {
+  return { hello: "world" };
+});
+import "./routes/direcciones";
+import "./routes/centrosDistribucion";
