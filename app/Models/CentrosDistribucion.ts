@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Direccion from './Direccion'
+import Municipio from './Municipio'
 
 export default class CentrosDistribucion extends BaseModel {
   @column({ isPrimary: true })
@@ -11,18 +12,26 @@ export default class CentrosDistribucion extends BaseModel {
 
   @column()
   public telefono: number
-  
-  @column()
-  public direccion_id: number
 
+  @column()
+  public municipio_id:number
+  
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @belongsTo(()=>Direccion,{
-    foreignKey: 'direccion_id'
+
+  @hasOne(() => Direccion,{
+    foreignKey:'centrosDistribucion_id'
   })
-  public projector:BelongsTo<typeof Direccion>
+  public direccion: HasOne<typeof Direccion>
+
+  @belongsTo(() => Municipio, {
+    //este es el nombre de la clave foranea
+    foreignKey: "municipio_id",
+  })
+  public municipio: BelongsTo<typeof Municipio>;
+  
 }

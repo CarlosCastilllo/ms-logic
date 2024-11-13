@@ -12,8 +12,8 @@ export default class extends BaseSchema {
       table
         .integer("centrosDistribucion_id")
         .unsigned()
-        .references("centrosDistribucion.id")
-        .onDelete("CASCADE");
+        .references("centros_distribucions.id");
+
       table.timestamp("created_at", { useTz: true });
       table.timestamp("updated_at", { useTz: true });
     });

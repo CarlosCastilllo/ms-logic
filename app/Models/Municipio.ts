@@ -9,6 +9,8 @@ import {
 } from "@ioc:Adonis/Lucid/Orm";
 import Departamento from "./Departamento";
 import Operacion from "./Operacion";
+import Direccion from "./Direccion";
+import CentrosDistribucion from "./CentrosDistribucion";
 
 export default class Municipio extends BaseModel {
   @column({ isPrimary: true })
@@ -40,4 +42,16 @@ export default class Municipio extends BaseModel {
     foreignKey: "municipio_id",
   })
   public operacions: HasMany<typeof Operacion>;
+
+  @hasMany(() => Direccion, {
+    //este es el nombre de la clave foranea
+    foreignKey: "municipio_id",
+  })
+  public direccions: HasMany<typeof Direccion>;
+
+  @hasMany(() => CentrosDistribucion, {
+    //este es el nombre de la clave foranea
+    foreignKey: "municipio_id",
+  })
+  public centrosDistribucion: HasMany<typeof CentrosDistribucion>;
 }
