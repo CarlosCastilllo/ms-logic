@@ -35,3 +35,5 @@ import "./routes/centrosDistribucion";
 import "./routes/categorias";
 import "./routes/cuotas";
 import "./routes/facturas";
+import "./routes/conductores";
+import "./routes/turnos";

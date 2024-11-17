@@ -32,5 +32,5 @@ export default class Cuota extends BaseModel {
   @hasOne(() => Factura,{
     foreignKey:'cuota_id'
   })
-  public facrura: HasOne<typeof Factura>
+  public factura: HasOne<typeof Factura>
 }
