@@ -30,7 +30,7 @@ export default class CuotasController {
     const body = request.body();
     theCuota.monto = body.monto;
     theCuota.intereses = body.intereses;
-    //theCuota.contrato_id = body.contrato_id;
+    theCuota.contrato_id = body.contrato_id;
     return await theCuota.save();
   }
 
