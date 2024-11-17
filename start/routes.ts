@@ -33,3 +33,4 @@ import "./routes/servicio";
 import "./routes/direcciones";
 import "./routes/centrosDistribucion";
 import "./routes/categorias";
+import "./routes/cuotas";
