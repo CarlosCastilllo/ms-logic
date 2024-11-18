@@ -6,6 +6,7 @@ export default class FacturaesController {
         if (params.id) {
             let theFactura: Factura = await Factura.findOrFail(params.id)
             await theFactura.load('cuota')
+            await theFactura.load('gasto')
             return theFactura;
         } else {
             const data = request.all()

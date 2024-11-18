@@ -1,6 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Administador from './Administador'
+import Gasto from './Gasto'
+import Hotel from './Hotel'
+import Restaurante from './Restaurante'
 
 export default class Servicio extends BaseModel {
   @column({ isPrimary: true })
@@ -23,4 +26,20 @@ export default class Servicio extends BaseModel {
     foreignKey:'servicio_id'
   })
   public administrador: HasOne<typeof Administador>
+
+  @hasMany(() => Gasto,{
+    //este es el nombre de la clave foranea
+    foreignKey:'servicio_id'
+  })
+  public Gastos: HasMany<typeof Gasto>
+
+  @hasOne(() => Hotel,{
+    foreignKey:'servicio_id'
+  })
+  public Hotel: HasOne<typeof Hotel>
+
+  @hasOne(() => Restaurante,{
+    foreignKey:'servicio_id'
+  })
+  public restaurante: HasOne<typeof Restaurante>
 }
