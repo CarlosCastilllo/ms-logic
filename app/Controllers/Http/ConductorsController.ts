@@ -35,7 +35,7 @@ export default class ConductoresController {
         theConductor.telefono = body.telefono;
         theConductor.num_licencia = body.num_licencia;
         theConductor.vencimiento = body.vencimiento;
-        theConductor.usuario_id = body.centrosDistribucion_id;
+        theConductor.usuario_id = body.usuario_id;
         return await theConductor.save();
     }
 

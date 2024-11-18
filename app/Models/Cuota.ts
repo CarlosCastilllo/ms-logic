@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, /*BelongsTo, belongsTo,*/ column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, /*BelongsTo, belongsTo,*/ column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Factura from './Factura'
+import Contrato from './Contrato'
 
 export default class Cuota extends BaseModel {
   @column({ isPrimary: true })
@@ -21,13 +22,13 @@ export default class Cuota extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  /*
+  
   @belongsTo(() => Contrato, {
     //este es el nombre de la clave foranea
     foreignKey: "contrato_id",
   })
-  public departamento: BelongsTo<typeof Contrato>;
-  */
+  public contrato: BelongsTo<typeof Contrato>;
+  
 
   @hasOne(() => Factura,{
     foreignKey:'cuota_id'

@@ -33,7 +33,14 @@ import "./routes/servicio";
 import "./routes/direcciones";
 import "./routes/centrosDistribucion";
 import "./routes/categorias";
+import "./routes/seguros";
 import "./routes/cuotas";
 import "./routes/facturas";
 import "./routes/conductores";
 import "./routes/turnos";
+import "./routes/vehiculoConductors";
+import "./routes/gastos";
+import "./routes/hotels";
+import "./routes/restaurantes";
+import "./routes/clientes";
+import "./routes/rutas"
