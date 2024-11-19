@@ -32,6 +32,7 @@ export default class RestaurantesController {
         theRestaurante.nombre = body.nombre;
         theRestaurante.estrellas = body.estrellas;
         theRestaurante.direccion = body.direccion;
+        theRestaurante.servicio_id = body.servicio_id;
         return await theRestaurante.save();
       }
     
