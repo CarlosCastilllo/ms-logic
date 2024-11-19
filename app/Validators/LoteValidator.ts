@@ -1,7 +1,7 @@
 import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class ContratoValidator {
+export default class LoteValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,12 +24,7 @@ export default class ContratoValidator {
    *    ```
    */
   public schema = schema.create({
-    fechaInicio: schema.date({
-      format: 'yyyy-MM-dd',
-    }),
-    fechaFin: schema.date({
-      format: 'yyyy-MM-dd',
-    })
+    
   })
 
   /**
@@ -43,7 +38,5 @@ export default class ContratoValidator {
    * }
    *
    */
-  public messages: CustomMessages = {
-
-  }
+  public messages: CustomMessages = {}
 }

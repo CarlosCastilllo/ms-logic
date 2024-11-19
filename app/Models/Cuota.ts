@@ -16,20 +16,18 @@ export default class Cuota extends BaseModel {
   @column()
   public intereses:number
 
-  @column()
+  @column()//FK de contrato
   public contrato_id: number
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  
   @belongsTo(() => Contrato, {
     //este es el nombre de la clave foranea
     foreignKey: "contrato_id",
   })
   public contrato: BelongsTo<typeof Contrato>;
   
-
   @hasOne(() => Factura,{
     foreignKey:'cuota_id'
   })
