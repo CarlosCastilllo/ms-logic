@@ -6,6 +6,10 @@ export default class MunicipiosController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       let theMunicipio: Municipio = await Municipio.findOrFail(params.id);
+      await theMunicipio.load("departamento")   
+      await theMunicipio.load("operacions")   
+      await theMunicipio.load("direccions")   
+      await theMunicipio.load("centrosDistribucion") 
       return theMunicipio;
     } else {
       const data = request.all();
@@ -22,6 +26,10 @@ export default class MunicipiosController {
     await request.validate(MunicipioValidator);
     const body = request.body();
     const theMunicipio: Municipio = await Municipio.create(body);
+    await theMunicipio.load("departamento")   
+    await theMunicipio.load("operacions")   
+    await theMunicipio.load("direccions")   
+    await theMunicipio.load("centrosDistribucion") 
     return theMunicipio;
   }
 
@@ -31,6 +39,10 @@ export default class MunicipiosController {
     theMunicipio.nombre = body.nombre;
     theMunicipio.habitantes = body.habitantes;
     theMunicipio.departamento_id = body.departamento_id;
+    await theMunicipio.load("departamento")   
+    await theMunicipio.load("operacions")   
+    await theMunicipio.load("direccions")   
+    await theMunicipio.load("centrosDistribucion") 
     return await theMunicipio.save();
   }
 

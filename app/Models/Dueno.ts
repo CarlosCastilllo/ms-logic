@@ -31,11 +31,11 @@ export default class Dueno extends BaseModel {
   })
   public conductor: BelongsTo<typeof Conductor>
 
-  /*@hasMany(() => Gasto,{
+  @hasMany(() => Gasto,{
     //este es el nombre de la clave foranea
     foreignKey:'dueno_id'
   })
-  public Gastos: HasMany<typeof Gasto>*/
+  public gastos: HasMany<typeof Gasto>
 
   @hasMany(() => DuenoVehiculo, {
     foreignKey: 'dueno_id'

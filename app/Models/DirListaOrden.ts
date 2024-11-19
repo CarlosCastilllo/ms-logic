@@ -39,5 +39,5 @@ export default class DirListaOrden extends BaseModel {
   @hasOne(() =>Lote,{
     foreignKey:'dir_lista_orden_id'
   })
-  public projector:HasOne<typeof Lote>
+  public lote:HasOne<typeof Lote>
 }

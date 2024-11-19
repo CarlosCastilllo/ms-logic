@@ -8,6 +8,7 @@ export default class HotelsController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
           let theHotel: Hotel = await Hotel.findOrFail(params.id);
+          await theHotel.load("servicio")           
           return theHotel;
         } else {
           const data = request.all();
@@ -24,6 +25,7 @@ export default class HotelsController {
         await request.validate(HotelValidator);
         const body = request.body();
         const theHotel: Hotel = await Hotel.create(body);
+        await theHotel.load("servicio")   
         return theHotel;
       }
     
@@ -34,6 +36,7 @@ export default class HotelsController {
         theHotel.estrellas = body.estrellas;
         theHotel.direccion = body.direccion;
         theHotel.servicio_id = body.servicio_id;
+        await theHotel.load("servicio")   
         return await theHotel.save();
       }
     

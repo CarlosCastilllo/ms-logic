@@ -30,12 +30,12 @@ export default class Conductor extends BaseModel {
   @hasOne(() => Dueno,{
     foreignKey:'conductor_id'
   })
-  public dueño: HasOne<typeof Dueno>
+  public dueno: HasOne<typeof Dueno>
 
   @hasMany(() => Turno,{
     foreignKey:'conductor_id'
   })
-  public turno: HasMany<typeof Turno>
+  public turnos: HasMany<typeof Turno>
 
   @hasMany(() => VehiculoConductor,{
     //este es el nombre de la clave foranea
@@ -47,7 +47,7 @@ export default class Conductor extends BaseModel {
     //este es el nombre de la clave foranea
     foreignKey:'conductor_id'
   })
-  public Gastos: HasMany<typeof Gasto>
+  public gastos: HasMany<typeof Gasto>
 
   /*@hasOne(() => Usuario,{
     foreignKey:'usuario_id'

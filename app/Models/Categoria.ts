@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import CategoriaProducto from './CategoriaProducto';
 
 export default class Categoria extends BaseModel {
   @column({ isPrimary: true })
@@ -26,11 +27,16 @@ export default class Categoria extends BaseModel {
   @hasOne(() => Categoria, {
     foreignKey: "categoria_padre",
   })
-  public subcategoria: HasOne<typeof Categoria>;
+  public subCategoria: HasOne<typeof Categoria>;
 
   // Relación "pertenece a"
   @belongsTo(() => Categoria, {
     foreignKey: "categoria_padre",
   })
   public categoriaPadre: BelongsTo<typeof Categoria>;
+
+  @hasMany(() => CategoriaProducto, {
+    foreignKey: "categoriaId", //Clave foránea que relaciona la identidad dominada
+  })
+  public categoriaProducto: HasMany<typeof CategoriaProducto>;
 }

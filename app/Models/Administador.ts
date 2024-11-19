@@ -1,12 +1,9 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
-import Usuario from './Usuario'
+
 import Servicio from './Servicio'
 
 export default class Administador extends BaseModel {
-  @belongsTo(() => Usuario)
-  public usuario: BelongsTo<typeof Usuario>
-
   @column({ isPrimary: true })
   public id: number
 

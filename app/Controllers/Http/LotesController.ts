@@ -6,6 +6,9 @@ export default class LotesController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
             let theLote: Lote = await Lote.findOrFail(params.id)
+            await theLote.load("productos")   
+            await theLote.load("dirListaOrdens")   
+            await theLote.load("ruta")   
             return theLote;
         } else {
             const data = request.all()
@@ -24,6 +27,9 @@ export default class LotesController {
         await request.validate(LoteValidator);
         const body = request.body();
         const theLote: Lote = await Lote.create(body);
+        await theLote.load("productos")   
+        await theLote.load("dirListaOrdens")   
+        await theLote.load("ruta")   
         return theLote;
     }
 
@@ -33,6 +39,9 @@ export default class LotesController {
         theLote.peso = body.peso;
         theLote.rutaId = body.rutaId;
         theLote.ordenListaId = body.ordenListaId;
+        await theLote.load("productos")   
+        await theLote.load("dirListaOrdens")   
+        await theLote.load("ruta")   
         return await theLote.save();
     }
 

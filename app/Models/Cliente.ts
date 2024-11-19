@@ -3,6 +3,7 @@ import { BaseModel, column, HasMany, hasMany, HasOne, hasOne } from '@ioc:Adonis
 import Contrato from './Contrato'
 import Empresa from './Empresa'
 import PersonaNatural from './PersonaNatural'
+import Producto from './Producto'
 
 export default class Cliente extends BaseModel {
   @column({ isPrimary: true })
@@ -15,7 +16,7 @@ export default class Cliente extends BaseModel {
   public telefono : number
 
   @column()
-  public cantidad_pedidos
+  public cantidad_pedidos: number
 
   @column()
   public usuario_id: number
@@ -41,4 +42,9 @@ export default class Cliente extends BaseModel {
     foreignKey: "cliente_id", //Clave foránea que relaciona la identidad dominada
   })
   public personaNatural: HasOne<typeof PersonaNatural>;
+
+  @hasMany(() => Producto,{
+    foreignKey:'clienteId'
+  })
+  public productos: HasMany<typeof Producto>
 }

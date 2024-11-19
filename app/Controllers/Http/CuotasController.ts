@@ -6,6 +6,8 @@ export default class CuotasController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       let theCuota: Cuota = await Cuota.findOrFail(params.id);
+      await theCuota.load("factura");
+      await theCuota.load("contrato");
       return theCuota;
     } else {
       const data = request.all();
@@ -22,6 +24,8 @@ export default class CuotasController {
     await request.validate(CuotaValidator);
     const body = request.body();
     const theCuota: Cuota = await Cuota.create(body);
+    await theCuota.load("factura");
+    await theCuota.load("contrato");
     return theCuota;
   }
 
@@ -31,6 +35,8 @@ export default class CuotasController {
     theCuota.monto = body.monto;
     theCuota.intereses = body.intereses;
     theCuota.contrato_id = body.contrato_id;
+    await theCuota.load("factura");
+    await theCuota.load("contrato");
     return await theCuota.save();
   }
 

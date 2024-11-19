@@ -7,6 +7,7 @@ export default class RestaurantesController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
           let theRestaurante: Restaurante = await Restaurante.findOrFail(params.id);
+          await theRestaurante.load("servicio")   
           return theRestaurante;
         } else {
           const data = request.all();
@@ -23,6 +24,7 @@ export default class RestaurantesController {
         await request.validate(RestauranteValidator);
         const body = request.body();
         const theRestaurante: Restaurante = await Restaurante.create(body);
+        await theRestaurante.load("servicio")   
         return theRestaurante;
       }
     
@@ -33,6 +35,7 @@ export default class RestaurantesController {
         theRestaurante.estrellas = body.estrellas;
         theRestaurante.direccion = body.direccion;
         theRestaurante.servicio_id = body.servicio_id;
+        await theRestaurante.load("servicio")   
         return await theRestaurante.save();
       }
     

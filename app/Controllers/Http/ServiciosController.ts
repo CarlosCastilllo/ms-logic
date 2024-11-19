@@ -8,6 +8,10 @@ export default class ServiciosController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
           let theServicio: Servicio = await Servicio.findOrFail(params.id);
+          await theServicio.load("administrador") 
+          await theServicio.load("gastos") 
+          await theServicio.load("hotel")
+          await theServicio.load("restaurante") 
           return theServicio;
         } else {
           const data = request.all();
@@ -24,6 +28,10 @@ export default class ServiciosController {
         await request.validate(ServicioValidator);
         const body = request.body();
         const theServicio: Servicio = await Servicio.create(body);
+        await theServicio.load("administrador") 
+        await theServicio.load("gastos") 
+        await theServicio.load("hotel")
+        await theServicio.load("restaurante") 
         return theServicio;
       }
     
@@ -32,7 +40,11 @@ export default class ServiciosController {
         const body = request.body();
         theServicio.precio = body.precio;
         theServicio.tipo_servicio = body.tipo_servicio;
-        //theServicio.administrador_id = body.administrador_id;
+        theServicio.administrador_id = body.administrador_id;
+        await theServicio.load("administrador") 
+        await theServicio.load("gastos") 
+        await theServicio.load("hotel")
+        await theServicio.load("restaurante") 
         return await theServicio.save();
       }
     

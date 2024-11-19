@@ -6,6 +6,10 @@ export default class VehiculosController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       let theVehiculo: Vehiculo = await Vehiculo.findOrFail(params.id);
+      await theVehiculo.load("operacions")
+      await theVehiculo.load("vehiculoConductors")
+      await theVehiculo.load("rutas")            
+      await theVehiculo.load("duenosVehiculos")
       return theVehiculo;
     } else {
       const data = request.all();
@@ -22,6 +26,10 @@ export default class VehiculosController {
     await request.validate(VehiculoValidator);
     const body = request.body();
     const theVehiculo: Vehiculo = await Vehiculo.create(body);
+    await theVehiculo.load("operacions")
+    await theVehiculo.load("vehiculoConductors")
+    await theVehiculo.load("rutas")            
+    await theVehiculo.load("duenosVehiculos")
     return theVehiculo;
   }
 
@@ -32,6 +40,10 @@ export default class VehiculosController {
     theVehiculo.placa = body.placa;
     theVehiculo.tipo = body.tipo;
     theVehiculo.capacidad = body.capacidad;
+    await theVehiculo.load("operacions")
+    await theVehiculo.load("vehiculoConductors")
+    await theVehiculo.load("rutas")            
+    await theVehiculo.load("duenosVehiculos")
     return await theVehiculo.save();
   }
 

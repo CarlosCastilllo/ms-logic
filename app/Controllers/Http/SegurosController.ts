@@ -5,6 +5,7 @@ export default class SegurosController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
             let theSeguro: Seguro = await Seguro.findOrFail(params.id)
+            await theSeguro.load("vehiculo") 
             return theSeguro;
         } else {
             const data = request.all()
@@ -22,6 +23,7 @@ export default class SegurosController {
     public async create({ request }: HttpContextContract) {
         const body = request.body();
         const theSeguro: Seguro = await Seguro.create(body);
+        await theSeguro.load("vehiculo") 
         return theSeguro;
     }
 
@@ -33,6 +35,7 @@ export default class SegurosController {
         theSeguro.fecha_expedicion = body.fecha_expedicion;
         theSeguro.fecha_vencimiento = body.fecha_vencimiento;
         theSeguro.vehiculo_id = body.vehiculo_id;
+        await theSeguro.load("vehiculo") 
         return await theSeguro.save();
     }
 

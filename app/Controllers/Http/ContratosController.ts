@@ -6,6 +6,9 @@ export default class ContratoesController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
             let theContrato: Contrato = await Contrato.findOrFail(params.id)
+            await theContrato.load("cliente");
+            await theContrato.load("cuotas");
+            await theContrato.load("rutas");
             return theContrato;
         } else {
             const data = request.all()
@@ -23,6 +26,9 @@ export default class ContratoesController {
     public async create({ request }: HttpContextContract) {
         const body = request.body();
         const theContrato: Contrato = await Contrato.create(body);
+        await theContrato.load("cliente");
+        await theContrato.load("cuotas");
+        await theContrato.load("rutas");
         return theContrato;
     }
 
@@ -32,6 +38,9 @@ export default class ContratoesController {
         theContrato.fecha_inicio = body.fecha_inicio;
         theContrato.fecha_fin = body.fecha_fin;
         theContrato.cliente_id = body.cliente_id;
+        await theContrato.load("cliente");
+        await theContrato.load("cuotas");
+        await theContrato.load("rutas");
         return await theContrato.save();
     }
 

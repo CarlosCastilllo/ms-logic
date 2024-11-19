@@ -7,6 +7,8 @@ export default class EmpresasController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
           let theEmpresa: Empresa = await Empresa.findOrFail(params.id);
+          await theEmpresa.load("cliente");
+          await theEmpresa.load("personaNatural");
           return theEmpresa;
         } else {
           const data = request.all();
@@ -23,6 +25,8 @@ export default class EmpresasController {
         await request.validate(EmpresaValidator);
         const body = request.body();
         const theEmpresa: Empresa = await Empresa.create(body);
+        await theEmpresa.load("cliente");
+        await theEmpresa.load("personaNatural");
         return theEmpresa;
       }
     
@@ -32,6 +36,8 @@ export default class EmpresasController {
         theEmpresa.tipo_empresa = body.tipo_empresa;
         theEmpresa.direccion_fiscal = body.direccion_fiscal;
         theEmpresa.cliente_id = body.cliente_id;
+        await theEmpresa.load("cliente");
+        await theEmpresa.load("personaNatural");
         return await theEmpresa.save();
       }
     

@@ -7,6 +7,10 @@ export default class RutasController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
             let theRuta: Ruta = await Ruta.findOrFail(params.id)
+            await theRuta.load("lotes") 
+            await theRuta.load("dirListaOrden") 
+            await theRuta.load("contrato") 
+            await theRuta.load("vehiculo") 
             return theRuta;
         } else {
             const data = request.all()
@@ -24,6 +28,10 @@ export default class RutasController {
     public async create({ request }: HttpContextContract) {
         const body = request.body();
         const theRuta: Ruta = await Ruta.create(body);
+        await theRuta.load("lotes") 
+        await theRuta.load("dirListaOrden") 
+        await theRuta.load("contrato") 
+        await theRuta.load("vehiculo") 
         return theRuta;
     }
 
@@ -36,6 +44,10 @@ export default class RutasController {
         theRuta.entrega_estimada = body.entrega_estimada;
         theRuta.contrato_id = body.contrato_id;
         theRuta.vehiculo_id = body.vehiculo_id;
+        await theRuta.load("lotes") 
+        await theRuta.load("dirListaOrden") 
+        await theRuta.load("contrato") 
+        await theRuta.load("vehiculo") 
         return await theRuta.save();
     }
 

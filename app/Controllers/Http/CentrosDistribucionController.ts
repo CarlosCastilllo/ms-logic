@@ -6,7 +6,8 @@ export default class CentrosDistribucionController {
     if (params.id) {
       let theCentrosDistribucion: CentrosDistribucion =
         await CentrosDistribucion.findOrFail(params.id);
-      await theCentrosDistribucion.load("direccion");
+        await theCentrosDistribucion.load("direccion")
+        await theCentrosDistribucion.load("municipio")
       return theCentrosDistribucion;
     } else {
       const data = request.all();
@@ -23,7 +24,8 @@ export default class CentrosDistribucionController {
     const body = request.body();
     const theCentrosDistribucion: CentrosDistribucion =
       await CentrosDistribucion.create(body);
-    //await theCentrosDistribucion.load("direccion")
+    await theCentrosDistribucion.load("direccion")
+    await theCentrosDistribucion.load("municipio")
     return theCentrosDistribucion;
   }
 
@@ -34,6 +36,9 @@ export default class CentrosDistribucionController {
     theCentrosDistribucion.nombre = body.nombre;
     theCentrosDistribucion.telefono = body.telefono;
     theCentrosDistribucion.municipio_id = body.municipio_id;
+    theCentrosDistribucion.direccion_id = body.direccion_id;
+    await theCentrosDistribucion.load("direccion")
+    await theCentrosDistribucion.load("municipio")
     return await theCentrosDistribucion.save();
   }
 

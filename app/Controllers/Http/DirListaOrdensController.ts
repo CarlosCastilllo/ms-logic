@@ -8,6 +8,9 @@ export default class DirListaOrdensController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
           let theDirListaOrden: DirListaOrden = await DirListaOrden.findOrFail(params.id);
+          await theDirListaOrden.load('ruta')
+          await theDirListaOrden.load('direccion')
+          await theDirListaOrden.load('lote')
           return theDirListaOrden;
         } else {
           const data = request.all();
@@ -24,6 +27,9 @@ export default class DirListaOrdensController {
         await request.validate(DirListaOrdenValidator);
         const body = request.body();
         const theDirListaOrden: DirListaOrden = await DirListaOrden.create(body);
+        await theDirListaOrden.load('ruta')
+        await theDirListaOrden.load('direccion')
+        await theDirListaOrden.load('lote')
         return theDirListaOrden;
       }
     
@@ -34,6 +40,9 @@ export default class DirListaOrdensController {
         theDirListaOrden.descripcion = body.descripcion;
         theDirListaOrden.ruta_id= body.ruta_id;
         theDirListaOrden.direccion_id= body.direccion_id;
+        await theDirListaOrden.load('ruta')
+        await theDirListaOrden.load('direccion')
+        await theDirListaOrden.load('lote')
         return await theDirListaOrden.save();
       }
     

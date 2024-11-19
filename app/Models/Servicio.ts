@@ -15,6 +15,9 @@ export default class Servicio extends BaseModel {
   @column()
   public tipo_servicio: string
 
+  @column()
+  public administrador_id : number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -31,12 +34,12 @@ export default class Servicio extends BaseModel {
     //este es el nombre de la clave foranea
     foreignKey:'servicio_id'
   })
-  public Gastos: HasMany<typeof Gasto>
+  public gastos: HasMany<typeof Gasto>
 
   @hasOne(() => Hotel,{
     foreignKey:'servicio_id'
   })
-  public Hotel: HasOne<typeof Hotel>
+  public hotel: HasOne<typeof Hotel>
 
   @hasOne(() => Restaurante,{
     foreignKey:'servicio_id'

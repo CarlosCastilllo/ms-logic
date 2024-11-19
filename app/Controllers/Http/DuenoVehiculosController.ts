@@ -9,6 +9,8 @@ export default class DuenoVehiculosController {
           let theDuenoVehiculo: DuenoVehiculo = await DuenoVehiculo.findOrFail(
             params.id,
           );
+          await theDuenoVehiculo.load("vehiculo");
+          await theDuenoVehiculo.load("dueno");
           return theDuenoVehiculo;
         } else {
           const data = request.all();
@@ -25,6 +27,8 @@ export default class DuenoVehiculosController {
         await request.validate(DuenoVehiculoValidator);
         const body = request.body();
         const theDuenoVehiculo: DuenoVehiculo = await DuenoVehiculo.create(body);
+        await theDuenoVehiculo.load("vehiculo");
+        await theDuenoVehiculo.load("dueno");
         return theDuenoVehiculo;
       }
     
@@ -37,6 +41,8 @@ export default class DuenoVehiculosController {
     theDuenoVehiculo.porcentaje_propiedad = body.porcentaje_propiedad;
     theDuenoVehiculo.dueno_id= body.dueno_id;
     theDuenoVehiculo.vehiculo_id= body.vehiculo_id;
+    await theDuenoVehiculo.load("vehiculo");
+    await theDuenoVehiculo.load("dueno");
         return await theDuenoVehiculo.save();
       }
     

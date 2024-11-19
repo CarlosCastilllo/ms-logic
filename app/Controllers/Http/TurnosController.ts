@@ -6,6 +6,7 @@ export default class TurnosController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       let theTurno: Turno = await Turno.findOrFail(params.id);
+      await theTurno.load("conductor")
       return theTurno;
     } else {
       const data = request.all();
@@ -22,6 +23,7 @@ export default class TurnosController {
     await request.validate(TurnoValidator);
     const body = request.body();
     const theTurno: Turno = await Turno.create(body);
+    await theTurno.load("conductor")
     return theTurno;
   }
 
@@ -31,6 +33,7 @@ export default class TurnosController {
     theTurno.fecha_inicio = body.fecha_inicio;
     theTurno.fecha_fin = body.fecha_fin;
     theTurno.conductor_id = body.conductor_id;
+    await theTurno.load("conductor")
     return await theTurno.save();
   }
 

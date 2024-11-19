@@ -5,7 +5,12 @@ import CategoriaValidator from "App/Validators/CategoriaValidator";
 export default class CategoriasController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      let theCategoria: Categoria = await Categoria.findOrFail(params.id);
+      let theCategoria: Categoria = await Categoria.findOrFail(
+        params.id,
+      );
+      await theCategoria.load("categoriaPadre") 
+      await theCategoria.load("subCategoria") 
+      await theCategoria.load("categoriaProducto") 
       return theCategoria;
     } else {
       const data = request.all();
@@ -22,6 +27,9 @@ export default class CategoriasController {
     await request.validate(CategoriaValidator);
     const body = request.body();
     const theCategoria: Categoria = await Categoria.create(body);
+    await theCategoria.load("categoriaPadre") 
+    await theCategoria.load("subCategoria") 
+    await theCategoria.load("categoriaProducto") 
     return theCategoria;
   }
 
@@ -30,8 +38,9 @@ export default class CategoriasController {
     const body = request.body();
     theCategoria.nombre = body.nombre;
     theCategoria.descripcion = body.descripcion;
-    theCategoria.categoria_padre = body.categoria_padre;
-    theCategoria.detalle = body.detalle;
+    await theCategoria.load("categoriaPadre") 
+    await theCategoria.load("subCategoria") 
+    await theCategoria.load("categoriaProducto") 
     return await theCategoria.save();
   }
 

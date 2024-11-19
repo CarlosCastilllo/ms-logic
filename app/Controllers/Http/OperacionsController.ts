@@ -7,6 +7,9 @@ export default class OperacionsController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
             let theOperacion: Operacion = await Operacion.findOrFail(params.id)
+            await theOperacion.load("vehiculo")   
+            await theOperacion.load("municipio")   
+
             return theOperacion;
         } else {
             const data = request.all()
@@ -25,6 +28,8 @@ export default class OperacionsController {
         await request.validate(OperacionValidator);
         const body = request.body();
         const theOperacion: Operacion = await Operacion.create(body);
+        await theOperacion.load("vehiculo")   
+        await theOperacion.load("municipio")   
         return theOperacion;
     }
 
@@ -34,6 +39,8 @@ export default class OperacionsController {
         theOperacion.date = body.date
         theOperacion.municipio_id = body.municipio_id;
         theOperacion.vehiculo_id = body.vehiculo_id;
+        await theOperacion.load("vehiculo")   
+        await theOperacion.load("municipio")   
         return await theOperacion.save();
     }
 

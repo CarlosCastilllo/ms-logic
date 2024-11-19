@@ -6,6 +6,10 @@ export default class GastosController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
             let theGasto: Gasto = await Gasto.findOrFail(params.id)
+            await theGasto.load('servicio')
+            await theGasto.load('conductor')
+            await theGasto.load('factura')
+            await theGasto.load('dueno')
             return theGasto;
         } else {
             const data = request.all()
@@ -23,6 +27,10 @@ export default class GastosController {
     public async create({ request }: HttpContextContract) {
         const body = request.body();
         const theGasto: Gasto = await Gasto.create(body);
+        await theGasto.load('servicio')
+        await theGasto.load('conductor')
+        await theGasto.load('factura')
+        await theGasto.load('dueno')
         return theGasto;
     }
 
@@ -34,6 +42,10 @@ export default class GastosController {
         theGasto.servicio_id = body.servicio_id;
         theGasto.conductor_id = body.conductor_id;
         theGasto.dueno_id = body.dueno_id;
+        await theGasto.load('servicio')
+        await theGasto.load('conductor')
+        await theGasto.load('factura')
+        await theGasto.load('dueno')
         return await theGasto.save();
     }
 

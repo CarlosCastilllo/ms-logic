@@ -7,6 +7,8 @@ export default class VehiculoConductorsController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
             let theVehiculoConductor: VehiculoConductor = await VehiculoConductor.findOrFail(params.id)
+            await theVehiculoConductor.load("vehiculo")
+            await theVehiculoConductor.load("conductor")
             return theVehiculoConductor;
         } else {
             const data = request.all()
@@ -24,6 +26,8 @@ export default class VehiculoConductorsController {
     public async create({ request }: HttpContextContract) {
         const body = request.body();
         const theVehiculoConductor: VehiculoConductor = await VehiculoConductor.create(body);
+        await theVehiculoConductor.load("vehiculo")
+        await theVehiculoConductor.load("conductor")
         return theVehiculoConductor;
     }
 
@@ -33,6 +37,8 @@ export default class VehiculoConductorsController {
         theVehiculoConductor.fecha = body.fecha
         theVehiculoConductor.vehiculo_id = body.vehiculo_id;
         theVehiculoConductor.conductor_id = body.conductor_id;
+        await theVehiculoConductor.load("vehiculo")
+        await theVehiculoConductor.load("conductor")
         return await theVehiculoConductor.save();
     }
 

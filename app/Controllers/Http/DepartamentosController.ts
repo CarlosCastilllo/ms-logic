@@ -8,6 +8,7 @@ export default class DepartamentosController {
       let theDepartamento: Departamento = await Departamento.findOrFail(
         params.id,
       );
+      await theDepartamento.load("municipios");
       return theDepartamento;
     } else {
       const data = request.all();
@@ -24,6 +25,7 @@ export default class DepartamentosController {
     await request.validate(DepartamentoValidator);
     const body = request.body();
     const theDepartamento: Departamento = await Departamento.create(body);
+    await theDepartamento.load("municipios");
     return theDepartamento;
   }
 
@@ -34,6 +36,7 @@ export default class DepartamentosController {
     const body = request.body();
     theDepartamento.nombre = body.nombre;
     theDepartamento.habitantes = body.habitantes;
+    await theDepartamento.load("municipios");
     return await theDepartamento.save();
   }
 

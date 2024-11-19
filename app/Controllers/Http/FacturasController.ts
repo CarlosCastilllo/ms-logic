@@ -24,7 +24,8 @@ export default class FacturaesController {
     public async create({ request }: HttpContextContract) {
         const body = request.body();
         const theFactura: Factura = await Factura.create(body);
-        await theFactura.load("cuota")
+        await theFactura.load('cuota')
+        await theFactura.load('gasto')
         return theFactura;
     }
 
@@ -35,6 +36,8 @@ export default class FacturaesController {
         theFactura.fechaHora = body.fechaHora;
         theFactura.cuota_id = body.cuota_id;
         theFactura.gasto_id = body.gasto_id;
+        await theFactura.load('cuota')
+        await theFactura.load('gasto')
         return await theFactura.save();
     }
 
