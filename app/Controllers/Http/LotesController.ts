@@ -32,7 +32,7 @@ export default class LotesController {
         const body = request.body();
         theLote.peso = body.peso;
         theLote.rutaId = body.rutaId;
-        theLote.ordenListaId = body.odenListaId;
+        theLote.ordenListaId = body.ordenListaId;
         return await theLote.save();
     }
 
