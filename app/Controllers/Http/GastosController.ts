@@ -33,6 +33,7 @@ export default class GastosController {
         theGasto.descripcion = body.descripcion
         theGasto.servicio_id = body.servicio_id;
         theGasto.conductor_id = body.conductor_id;
+        theGasto.dueno_id = body.dueno_id;
         return await theGasto.save();
     }
 

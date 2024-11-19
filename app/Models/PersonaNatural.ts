@@ -11,7 +11,7 @@ export default class PersonaNatural extends BaseModel {
   public tipo_documento : string
 
   @column()
-  public documento : number
+  public documento : string
 
   @column()
   public nacimiento : DateTime

@@ -1,13 +1,11 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import Categoria from "App/Models/Categoria" 
+import Categoria from "App/Models/Categoria";
 import CategoriaValidator from "App/Validators/CategoriaValidator";
 
 export default class CategoriasController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      let theCategoria: Categoria = await Categoria.findOrFail(
-        params.id,
-      );
+      let theCategoria: Categoria = await Categoria.findOrFail(params.id);
       return theCategoria;
     } else {
       const data = request.all();
@@ -28,19 +26,17 @@ export default class CategoriasController {
   }
 
   public async update({ params, request }: HttpContextContract) {
-    const theCategoria: Categoria = await Categoria.findOrFail(
-      params.id,
-    );
+    const theCategoria: Categoria = await Categoria.findOrFail(params.id);
     const body = request.body();
     theCategoria.nombre = body.nombre;
     theCategoria.descripcion = body.descripcion;
+    theCategoria.categoria_padre = body.categoria_padre;
+    theCategoria.detalle = body.detalle;
     return await theCategoria.save();
   }
 
   public async delete({ params, response }: HttpContextContract) {
-    const theCategoria: Categoria = await Categoria.findOrFail(
-      params.id,
-    );
+    const theCategoria: Categoria = await Categoria.findOrFail(params.id);
     response.status(204);
     return await theCategoria.delete();
   }

@@ -21,6 +21,9 @@ export default class Gasto extends BaseModel {
   @column()
   public conductor_id:number
 
+  @column()
+  public dueno_id:number
+
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.string('descripcion')
       table.integer("servicio_id").unsigned().references("servicios.id").onDelete("CASCADE")
       table.integer("conductor_id").unsigned().references("conductors.id").onDelete("CASCADE")
+      table.integer("dueno_id").unsigned().references("duenos.id").onDelete("CASCADE")
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

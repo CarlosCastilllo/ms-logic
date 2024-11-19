@@ -22,7 +22,7 @@ export default class Conductor extends BaseModel {
   public vencimiento: Date
 
   @column()
-  public usuario_id: number
+  public usuario_id: string
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
