@@ -3,6 +3,7 @@ import { BaseModel, column, HasMany, hasMany } from "@ioc:Adonis/Lucid/Orm";
 import Operacion from "./Operacion";
 import VehiculoConductor from "./VehiculoConductor";
 import Ruta from "./Ruta";
+import DuenoVehiculo from "./DuenoVehiculo";
 
 export default class Vehiculo extends BaseModel {
   @column({ isPrimary: true })
@@ -43,4 +44,9 @@ export default class Vehiculo extends BaseModel {
     foreignKey:'vehiculo_id'
   })
   public rutas: HasMany<typeof Ruta>
+
+  @hasMany(() => DuenoVehiculo, {
+    foreignKey: 'vehiculo_id'
+  })
+  public duenosVehiculos: HasMany<typeof DuenoVehiculo>
 }

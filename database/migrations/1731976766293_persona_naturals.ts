@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('tipo_documento')
       table.integer('documento')
       table.dateTime('nacimiento')
-      table.integer('usuario_id')
+      table.string("usuario_id").notNullable()
       table.integer('cliente_id').unsigned().references("clients.id");
       table.integer('empresa_id').nullable()
       table.timestamp('created_at', { useTz: true })

@@ -46,4 +46,6 @@ import "./routes/clientes";
 import "./routes/rutas";
 import "./routes/empresas";
 import "./routes/personaNaturals";
-import "./routes/lotes"
+import "./routes/lotes";
+import "./routes/duenos";
+import "./routes/duenoVehiculos";

@@ -3,6 +3,7 @@ import { BaseModel, BelongsTo, belongsTo, column, HasOne, hasOne } from '@ioc:Ad
 import Servicio from './Servicio'
 import Conductor from './Conductor'
 import Factura from './Factura'
+import Dueno from './Dueno'
 
 export default class Gasto extends BaseModel {
   @column({ isPrimary: true })
@@ -43,4 +44,9 @@ export default class Gasto extends BaseModel {
     foreignKey:'gasto_id'
   })
   public factura: HasOne<typeof Factura>
+
+  @belongsTo(() => Dueno, {
+    foreignKey: "dueno_id",
+  })
+  public dueno: BelongsTo<typeof Dueno>;
 }

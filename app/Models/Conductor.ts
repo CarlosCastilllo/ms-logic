@@ -3,6 +3,7 @@ import { BaseModel, column, HasMany, hasMany, HasOne, hasOne } from '@ioc:Adonis
 import Turno from './Turno'
 import VehiculoConductor from './VehiculoConductor'
 import Gasto from './Gasto'
+import Dueno from './Dueno'
 
 export default class Conductor extends BaseModel {
   @column({ isPrimary: true })
@@ -26,10 +27,10 @@ export default class Conductor extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  /*@hasOne(() => Dueño,{
+  @hasOne(() => Dueno,{
     foreignKey:'conductor_id'
   })
-  public dueño: HasOne<typeof Dueño>*/
+  public dueño: HasOne<typeof Dueno>
 
   @hasMany(() => Turno,{
     foreignKey:'conductor_id'
