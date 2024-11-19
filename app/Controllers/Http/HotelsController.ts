@@ -33,6 +33,7 @@ export default class HotelsController {
         theHotel.nombre = body.nombre;
         theHotel.estrellas = body.estrellas;
         theHotel.direccion = body.direccion;
+        theHotel.servicio_id = body.servicio_id;
         return await theHotel.save();
       }
     

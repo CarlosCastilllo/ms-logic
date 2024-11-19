@@ -43,4 +43,6 @@ import "./routes/gastos";
 import "./routes/hotels";
 import "./routes/restaurantes";
 import "./routes/clientes";
-import "./routes/rutas"
+import "./routes/rutas";
+import "./routes/empresas";
+import "./routes/personaNaturals";

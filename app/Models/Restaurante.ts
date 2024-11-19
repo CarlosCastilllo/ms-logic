@@ -15,6 +15,9 @@ export default class Restaurante extends BaseModel {
   @column()
   public direccion : string
 
+  @column()
+  public servicio_id :number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
