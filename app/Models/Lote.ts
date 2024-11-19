@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import Ruta from './Ruta'
+import Producto from './Producto'
 
 export default class Lote extends BaseModel {
   @column({ isPrimary: true })
@@ -22,10 +23,10 @@ export default class Lote extends BaseModel {
   public updatedAt: DateTime
 
   //relacion n a 1 con Producto
-  // @hasMany(()=>Producto,{
-  //   foreignKey:'loteId'
-  // })
-  // public productos: HasMany<typeof Producto>
+  @hasMany(()=>Producto,{
+    foreignKey:'loteId'
+  })
+  public productos: HasMany<typeof Producto>
 
   //relacion 1 a 1 con OrdenLista
   // @hasMany(()=>OrdenLista,{
