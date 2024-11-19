@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import Lote from './Lote'
+import DirListaOrden from './DirListaOrden'
 
 export default class Ruta extends BaseModel {
   @column({ isPrimary: true })
@@ -26,4 +27,9 @@ export default class Ruta extends BaseModel {
     foreignKey:'rutaId'
   })
   public lotes: HasMany<typeof Lote>
+
+  @hasMany(() => DirListaOrden, {
+    foreignKey: 'ruta_id'
+  })
+  public dirListaOrden: HasMany<typeof DirListaOrden>
 }
