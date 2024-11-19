@@ -13,6 +13,7 @@ export default class extends BaseSchema {
         .unsigned()
         .references("municipios.id")
         .onDelete("CASCADE");
+      table.integer("direccion_id").unsigned().references("direccions.id");
       table.timestamp("created_at", { useTz: true });
       table.timestamp("updated_at", { useTz: true });
     });

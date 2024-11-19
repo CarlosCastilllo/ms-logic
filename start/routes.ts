@@ -49,3 +49,5 @@ import "./routes/personaNaturals";
 import "./routes/lotes";
 import "./routes/duenos";
 import "./routes/duenoVehiculos";
+import "./routes/productos";
+import "./routes/categoriaProductos";

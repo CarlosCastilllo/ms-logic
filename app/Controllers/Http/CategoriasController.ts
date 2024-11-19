@@ -8,6 +8,8 @@ export default class CategoriasController {
       let theCategoria: Categoria = await Categoria.findOrFail(
         params.id,
       );
+      await theCategoria.load("padres") 
+      await theCategoria.load("subCategorias") 
       return theCategoria;
     } else {
       const data = request.all();
@@ -24,6 +26,8 @@ export default class CategoriasController {
     await request.validate(CategoriaValidator);
     const body = request.body();
     const theCategoria: Categoria = await Categoria.create(body);
+    await theCategoria.load("padres") 
+    await theCategoria.load("subCategorias") 
     return theCategoria;
   }
 
@@ -34,6 +38,8 @@ export default class CategoriasController {
     const body = request.body();
     theCategoria.nombre = body.nombre;
     theCategoria.descripcion = body.descripcion;
+    await theCategoria.load("padres") 
+    await theCategoria.load("subCategorias") 
     return await theCategoria.save();
   }
 

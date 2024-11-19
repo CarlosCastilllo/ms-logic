@@ -6,6 +6,8 @@ export default class DireccionesController {
         if (params.id) {
             let theDireccion: Direccion = await Direccion.findOrFail(params.id)
             await theDireccion.load('centrosDistribucion')
+            await theDireccion.load('municipio')
+        
             return theDireccion;
         } else {
             const data = request.all()
@@ -24,6 +26,7 @@ export default class DireccionesController {
         const body = request.body();
         const theDireccion: Direccion = await Direccion.create(body);
         await theDireccion.load("centrosDistribucion")
+        await theDireccion.load('municipio')
         return theDireccion;
     }
 
@@ -35,7 +38,11 @@ export default class DireccionesController {
         theDireccion.barrio = body.barrio;
         theDireccion.centrosDistribucion_id = body.centrosDistribucion_id;
         theDireccion.municipio_id = body.municipio_id;
-        return await theDireccion.save();
+        await theDireccion.save()
+        await theDireccion.load('municipio')
+        await theDireccion.load("centrosDistribucion")
+        return theDireccion;
+    
     }
 
     public async delete({ params, response }: HttpContextContract) {

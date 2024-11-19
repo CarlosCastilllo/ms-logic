@@ -34,6 +34,7 @@ export default class CentrosDistribucionController {
     theCentrosDistribucion.nombre = body.nombre;
     theCentrosDistribucion.telefono = body.telefono;
     theCentrosDistribucion.municipio_id = body.municipio_id;
+    theCentrosDistribucion.direccion_id = body.direccion_id;
     return await theCentrosDistribucion.save();
   }
 

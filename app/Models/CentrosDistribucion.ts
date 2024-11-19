@@ -15,6 +15,9 @@ export default class CentrosDistribucion extends BaseModel {
 
   @column()
   public municipio_id:number
+
+  @column()
+  public direccion_id:number
   
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
