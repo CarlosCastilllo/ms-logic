@@ -5,4 +5,4 @@ Route.group(() => {
     Route.post("/dirListaOrdens", "DirListaOrdensController.create");
     Route.put("/dirListaOrdens/:id", "DirListaOrdensController.update");
     Route.delete("/dirListaOrdens/:id", "DirListaOrdensController.delete");
-});
+}).middleware(['security'])
