@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('nombre')
       table.integer('telefono')
       table.integer('cantidad_pedidos')
-      table.integer('usuario_id').unsigned().references("usuarios.id").onDelete("CASCADE")
+      table.integer('usuario_id').notNullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

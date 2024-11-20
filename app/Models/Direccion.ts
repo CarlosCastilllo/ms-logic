@@ -18,9 +18,6 @@ export default class Direccion extends BaseModel {
   public barrio: string
 
   @column()
-  public centrosDistribucion_id: number
-
-  @column()
   public municipio_id:number
 
 

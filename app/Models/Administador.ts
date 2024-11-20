@@ -8,10 +8,6 @@ export default class Administador extends BaseModel {
   public id: number
 
   @column()
-  public servicio_id: number
-
-
-  @column()
   public usuarioId: number
 
   @column()
