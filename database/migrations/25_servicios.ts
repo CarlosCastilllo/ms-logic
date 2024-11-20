@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('precio').notNullable()
       table.string('tipo_servicio').notNullable()
-      table.integer('administrador_id').unsigned().references('administradores.id')
+      table.integer('administrador_id').unsigned().references('administradors.id')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

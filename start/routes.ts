@@ -51,3 +51,4 @@ import "./routes/duenoVehiculos";
 import "./routes/productos";
 import "./routes/categoriaProductos";
 import "./routes/dirListaOrdens"
+import "./routes/contratos"

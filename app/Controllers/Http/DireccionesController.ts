@@ -36,7 +36,6 @@ export default class DireccionesController {
     theDireccion.carrera = body.nombre;
     theDireccion.calle = body.calle;
     theDireccion.barrio = body.barrio;
-    theDireccion.centrosDistribucion_id = body.centrosDistribucion_id;
     theDireccion.municipio_id = body.municipio_id;
     await theDireccion.save();
     await theDireccion.load('centrosDistribucion')

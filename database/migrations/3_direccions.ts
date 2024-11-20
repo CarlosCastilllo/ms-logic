@@ -10,9 +10,9 @@ export default class extends BaseSchema {
       table.string("calle");
       table.string("barrio");
       table
-        .integer("centrosDistribucion_id")
+        .integer("municipio_id")
         .unsigned()
-        .references("centros_distribucions.id");
+        .references("municipios.id");
 
       table.timestamp("created_at", { useTz: true });
       table.timestamp("updated_at", { useTz: true });

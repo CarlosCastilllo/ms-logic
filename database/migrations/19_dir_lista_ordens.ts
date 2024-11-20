@@ -1,17 +1,15 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'persona_naturals'
+  protected tableName = 'dir_lista_ordens'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.string('tipo_documento')
-      table.string('documento')
-      table.dateTime('nacimiento')
-      table.string("usuario_id").notNullable()
-      table.integer('cliente_id').unsigned().references("clients.id");
-      table.integer('empresa_id').nullable()
+      table.integer('orden').notNullable()
+      table.string('descripcion')
+      table.integer('ruta_id').unsigned().references('rutas.id').notNullable().onDelete('CASCADE')
+      table.integer('direccion_id').unsigned().references('direccions.id').notNullable().onDelete('CASCADE')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

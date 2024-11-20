@@ -7,12 +7,9 @@ export default class Administador extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
-  public servicio_id: number
-
 
   @column()
-  public usuarioId: number
+  public usuario_id: number
 
   @column()
   public cuenta: number

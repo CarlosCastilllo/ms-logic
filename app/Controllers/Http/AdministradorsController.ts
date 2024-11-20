@@ -13,7 +13,7 @@ export default class AdministradorsController {
         params.id,
       );
       const userResponse = await axios.get(
-        `${Env.get("MS_SECURITY")}/users/${theAdministrador.usuarioId}`,
+        `${Env.get("MS_SECURITY")}/users/${theAdministrador.usuario_id}`,
         {
           headers: { Authorization: request.headers().authorization || "" },
         }
@@ -84,7 +84,7 @@ export default class AdministradorsController {
       params.id,
     );
     const body = request.body();
-    theAdministrador.usuarioId = body.usuarioId;
+    theAdministrador.usuario_id = body.usuario_id;
     theAdministrador.cuenta = body.cuenta;
     return await theAdministrador.save();
   }
