@@ -9,7 +9,11 @@ export default class extends BaseSchema {
       table.string("carrera");
       table.string("calle");
       table.string("barrio");
-      
+      table
+        .integer("municipio_id")
+        .unsigned()
+        .references("municipios.id");
+
       table.timestamp("created_at", { useTz: true });
       table.timestamp("updated_at", { useTz: true });
     });

@@ -3,12 +3,13 @@ import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 
 import Servicio from './Servicio'
 
-export default class Administador extends BaseModel {
+export default class Administrador extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+
   @column()
-  public usuarioId: number
+  public usuario_id: string
 
   @column()
   public cuenta: number
@@ -20,7 +21,7 @@ export default class Administador extends BaseModel {
   public updatedAt: DateTime
 
   @belongsTo(() => Servicio, {
-    foreignKey: 'id_administrador'
+    foreignKey: 'administrador_id'
   })
   public servicio: BelongsTo<typeof Servicio>
 }

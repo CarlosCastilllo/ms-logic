@@ -1,5 +1,5 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import Administrador from "App/Models/Administador" 
+import Administrador from "App/Models/Administrador" 
 import AdministradorValidator from "App/Validators/AdministradorValidator";
 import axios from "axios";
 import Env from "@ioc:Adonis/Core/Env";
@@ -13,7 +13,7 @@ export default class AdministradorsController {
         params.id,
       );
       const userResponse = await axios.get(
-        `${Env.get("MS_SECURITY")}/users/${theAdministrador.usuarioId}`,
+        `${Env.get("MS_SECURITY")}/users/${theAdministrador.usuario_id}`,
         {
           headers: { Authorization: request.headers().authorization || "" },
         }
@@ -48,11 +48,12 @@ export default class AdministradorsController {
     try{
     const body = request.body();
     const userResponse = await axios.get(
-      `${Env.get("MS_SECURITY")}/users/${body.user_id}`,
+      `${Env.get("MS_SECURITY")}/users/${body.usuario_id}`,
       {
         headers: { Authorization: request.headers().authorization || "" },
       }
     );
+    console.log(userResponse.data);
 
     // Verificar si no se encontró información del usuario en el microservicio
     if (!userResponse.data || Object.keys(userResponse.data).length === 0) {
@@ -66,7 +67,7 @@ export default class AdministradorsController {
     // Crear el Administrator si la validación y la verificación de usuario son exitosas
     await request.validate(AdministradorValidator);
     const theAdministrador: Administrador = await Administrador.create(body);
-    await theAdministrador.load("servicio");
+    // await theAdministrador.load("servicio");
     return theAdministrador;
   }catch (error){
     if (error.messages) {
@@ -84,7 +85,7 @@ export default class AdministradorsController {
       params.id,
     );
     const body = request.body();
-    theAdministrador.usuarioId = body.usuarioId;
+    theAdministrador.usuario_id = body.usuario_id;
     theAdministrador.cuenta = body.cuenta;
     return await theAdministrador.save();
   }

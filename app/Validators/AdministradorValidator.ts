@@ -6,8 +6,7 @@ export default class AdministradorValidator {
 
   public schema = schema.create({
     //En la cuenta del administrador solo se permiten caracteres alfanuméricos
-    cuenta: schema.string([
-      rules.alphaNum(),
+    cuenta: schema.number([
     ])
   })
 

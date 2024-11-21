@@ -6,4 +6,4 @@ Route.group(() => {
     Route.post("/cuotas", "CuotasController.create");
     Route.put("/cuotas/:id", "CuotasController.update");
     Route.delete("/cuotas/:id", "CuotasController.delete");
-})
+}).middleware(['security'])

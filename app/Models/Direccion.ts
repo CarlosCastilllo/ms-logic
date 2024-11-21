@@ -20,7 +20,6 @@ export default class Direccion extends BaseModel {
   @column()
   public municipio_id:number
 
-
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
